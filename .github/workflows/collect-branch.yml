@@ -1,4 +1,4 @@
-name: JDK IB Collector (Branch)
+name: DSO Loadout (Branch)
 run-name: ${{ github.actor }} is Collecting a Branch! 🚀
 on:
   push:
@@ -58,7 +58,7 @@ jobs:
 
       - name: Zip code base for ${{ vars.COLLECTOR }}
         run: |
-          echo -e "Zip Files\n"
+          echo -e "\nZip Files"
           zip -jD ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.zip *
           echo -e "\nList Files"
           ls -lht *
