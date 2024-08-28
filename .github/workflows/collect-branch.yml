@@ -32,10 +32,10 @@ jobs:
 
       - name: Bundle code base for ${{ vars.COLLECTOR }}
         run: |
-          echo -e "Bundle Repo"
+          echo -e "\nBundle Repo"
           git bundle create --progress ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.bundle --all
           echo -e "\nList Files"
-          ls -lht *
+          ls -Alht *
 
       - name: Upload bundle
         uses: actions/upload-artifact@v4
@@ -61,7 +61,7 @@ jobs:
           echo -e "Zip Files\n"
           zip -jD ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.zip *
           echo -e "\nList Files"
-          ls -Alht *
+          ls -lht *
 
       - name: Upload Zip
         uses: actions/upload-artifact@v4
@@ -154,7 +154,7 @@ jobs:
           merge-multiple: true
 
       - name: Show Artifacts
-        run: ls -Alh ${{ vars.COLLECTOR }}-*.*
+        run: ls -lh ${{ vars.COLLECTOR }}-*.*
 
   Sharepoint:
     runs-on: ubuntu-latest
@@ -169,4 +169,4 @@ jobs:
           merge-multiple: true
 
       - name: Show Artifacts
-        run: ls -Alh ${{ vars.COLLECTOR }}-*.*
+        run: ls -lh ${{ vars.COLLECTOR }}-*.*
