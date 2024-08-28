@@ -16,7 +16,6 @@ jobs:
         id: DATE
         run: |
           echo "DATE=$(date '+%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
-          echo -e "\n$GITHUB_OUTPUT\n"
           cat $GITHUB_OUTPUT
 
   Code:
@@ -31,16 +30,19 @@ jobs:
           git config user.name "$(git log -n 1 --pretty=format:%an)"
           git config user.email "$(git log -n 1 --pretty=format:%ae)"
 
-      - name: Bundle Repo1 code base for ${{ vars.COLLECTOR }}
+      - name: Bundle code base for ${{ vars.COLLECTOR }}
         run: |
+          echo -e "Bundle Repo"
           git bundle create --progress ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.bundle --all
-          ls -Alht *
+          echo -e "\nList Files"
+          ls -lht *
 
       - name: Upload bundle
         uses: actions/upload-artifact@v4
         with:
           name: ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.bundle
           path: ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.bundle
+          if-no-files-found: error
 
   Zip:
     needs: [Date]
@@ -56,14 +58,17 @@ jobs:
 
       - name: Zip code base for ${{ vars.COLLECTOR }}
         run: |
-          zip -jD ${{ vars.COLLECTOR }}-bom-${{ needs.Date.outputs.Date }}.zip *
+          echo -e "Zip Files\n"
+          zip -jD ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.zip *
+          echo -e "\nList Files"
           ls -Alht *
 
-      - name: Upload bundle
+      - name: Upload Zip
         uses: actions/upload-artifact@v4
         with:
           name: ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.zip
           path: ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.zip
+          if-no-files-found: error
 
   MakeISO:
     runs-on: ubuntu-latest
@@ -86,7 +91,7 @@ jobs:
           merge-multiple: true
 
       - name: Show Artifacts
-        run: ls -Alh ${{ vars.COLLECTOR }}-*.*
+        run: ls -lh *
 
       - name: Generate Artifact Hash File
         run: |
@@ -98,6 +103,7 @@ jobs:
         with:
           name: ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.sha
           path: ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.sha
+          if-no-files-found: error
 
       - name: Make ISO
         run: |
@@ -114,10 +120,9 @@ jobs:
         run: |
           sha256sum -b ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.iso | tee \
             ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.iso.sha
-          cat ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.iso.sha
 
       - name: Show ISO & Hash
-        run: ls -Alh *.iso*
+        run: ls -lh *.iso*
 
       - name: Upload ISO
         uses: actions/upload-artifact@v4
@@ -131,6 +136,7 @@ jobs:
         with:
           name: ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.iso.sha
           path: ${{ vars.COLLECTOR }}-${{ needs.Date.outputs.Date }}.iso.sha
+          if-no-files-found: error
 
   Release:
     runs-on: ubuntu-latest
