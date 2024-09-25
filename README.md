@@ -54,6 +54,15 @@ Basic set of apps:
 winget install GNU.Wget2 NoMoreFood.PuTTY-CAC VMware.HorizonClient
 ```
 
+### Useful Shortcuts
+
+`./Shortcuts` provides useful shortcuts, especially if you copy them to your start menu.
+
+In Powershell:
+```
+cp -r -v .\Shortcuts "$HOME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\"
+```
+
 ### Useful Drivers
 
 ```
