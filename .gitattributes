@@ -7,6 +7,7 @@
 *.{bat,[bB][aA][tT]} text eol=crlf
 *.{ics,[iI][cC][sS]} text eol=crlf
 *.{msc,[mM][sS]][cC]} text eol=crlf
+wslconfig text eol=crlf
 
 # Force bash scripts to always use LF line endings so that if a repo is accessed
 # in Unix via a file share from Windows, the scripts will work.
