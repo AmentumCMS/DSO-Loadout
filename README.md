@@ -54,6 +54,15 @@ Basic set of apps:
 winget install GNU.Wget2 NoMoreFood.PuTTY-CAC VMware.HorizonClient
 ```
 
+#### Desktop anywhere
+
+If desired, one can copy the prefs.txt for VMware Horizon View Client to user directory
+
+```
+mkdir /s C:\Users\%USER\AppData\Roaming\VMware\
+copy "VMware Horizon View Client" C:\Users\%USER\AppData\Roaming\VMware\
+```
+
 ### Useful Shortcuts
 
 `./Shortcuts` provides useful shortcuts, especially if you copy them to your start menu.

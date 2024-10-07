@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <RecentServer serverName="afrcdesktops.us.af.mil" hasValidCert="true" serverGuid="124ba1ed-f7da-4a04-b429-f88da5292404" workspaceOneHostname="" lastLogInAsCurrentUser="false" isSyncShortcutsEnabled="true">
+    <ShortCuts />
+    <RecentDesktop desktopID="cn=f91aad5d-2606-4100-b395-6b41244e2054,ou=entitlements,dc=vdiglobal,dc=vmware,dc=int" localIMEEnable="true" autoSyncToggleKeysMode="7">
+      <LastDisplaySize displaySize="WindowLarge" height="0" width="0">
+        <SelectedMonitors />
+      </LastDisplaySize>
+      <ConnectUSBDevicesOnStartup />
+      <ConnectUSBDevicesOnInsert />
+      <LastMonitor monitorIndex="2" />
+    </RecentDesktop>
+    <ShadowSettings />
+    <SecondaryServerList />
+    <FileRedirection />
+  </RecentServer>
+  <LastLoginAsCurrentUser loginAsCurrentUser="false" />
+  <BrokerJumpList>
+    <BrokerJump BrokerName="afrcdesktops.us.af.mil" BrokerArguments="vmware-view://afrcdesktops.us.af.mil/" />
+  </BrokerJumpList>
+  <DesktopJumpList>
+    <DesktopJump DesktopName="Desktop Anywhere Desktop" DesktopArguments="vmware-view://afrcdesktops.us.af.mil/cn=f91aad5d-2606-4100-b395-6b41244e2054,ou=entitlements,dc=vdiglobal,dc=vmware,dc=int?desktopProtocol=BLAST&amp;desktopLayout=WindowLarge" JumpListIconPath="C:\Program Files\VMware\VMware Horizon View Client\Assets\desktop.ico" />
+  </DesktopJumpList>
+  <sharingList shareHomeDirectory="true" allowAccessRemovable="true">
+    <sharingItem from="C:\Users\pappasj\OneDrive - Jacobs Engineering Group, Inc-GCC High" />
+    <sharingItem from="C:\Users\pappasj" />
+  </sharingList>
+  <AutoConnectServer AutoConnectServerName="afrcdesktops.us.af.mil" />
+  <DataSharingSettings />
+  <SecurityMode />
+  <BlastSettings />
+  <AutoCheckForUpdate autoMessagePopUp="true" />
+</Root>
