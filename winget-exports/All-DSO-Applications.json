@@ -1,0 +1,167 @@
+{
+	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
+	"CreationDate" : "2024-10-21T13:37:00.335-00:00",
+	"Sources" : 
+	[
+		{
+			"Packages" : 
+			[
+				{
+					"PackageIdentifier" : "JGraph.Draw"
+				},
+				{
+					"PackageIdentifier" : "7zip.7zip"
+				},
+				{
+					"PackageIdentifier" : "GIMP.GIMP"
+				},
+				{
+					"PackageIdentifier" : "Git.Git"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VSTOR"
+				},
+				{
+					"PackageIdentifier" : "Notepad++.Notepad++"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.Office"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OneDrive"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OpenJDK.21"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OpenJDK.17"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OpenJDK.11"
+				},
+				{
+					"PackageIdentifier" : "Hashicorp.Vagrant"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.CLRTypesSQLServer.2019"
+				},
+				{
+					"PackageIdentifier" : "dotPDN.PaintDotNet"
+				},
+				{
+					"PackageIdentifier" : "RedHat.Podman"
+				},
+				{
+					"PackageIdentifier" : "TortoiseGit.TortoiseGit"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.PowerShell"
+				},
+				{
+					"PackageIdentifier" : "NoMoreFood.PuTTY-CAC"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VisualStudioCode"
+				},
+				{
+					"PackageIdentifier" : "GitHub.cli"
+				},
+				{
+					"PackageIdentifier" : "OpenJS.NodeJS"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.WSL"
+				},
+				{
+					"PackageIdentifier" : "LIGHTNINGUK.ImgBurn"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.minikube"
+				},
+				{
+					"PackageIdentifier" : "VMware.HorizonClient"
+				},
+				{
+					"PackageIdentifier" : "Python.Launcher"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.PowerToys"
+				},
+				{
+					"PackageIdentifier" : "PS.KubeDevDashboard"
+				},
+				{
+					"PackageIdentifier" : "Derailed.k9s"
+				},
+				{
+					"PackageIdentifier" : "GNU.Wget2"
+				},
+				{
+					"PackageIdentifier" : "GitHub.GitHubDesktop"
+				},
+				{
+					"PackageIdentifier" : "Helm.Helm"
+				},
+				{
+					"PackageIdentifier" : "Insomnia.Inso"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.kubectl"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.kustomize"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VisualStudioCode.CLI"
+				},
+				{
+					"PackageIdentifier" : "RedHat.Podman-Desktop"
+				},
+				{
+					"PackageIdentifier" : "Insomnia.Insomnia"
+				},
+				{
+					"PackageIdentifier" : "k3d.k3d"
+				},
+				{
+					"PackageIdentifier" : "kosay.kubetui"
+				},
+				{
+					"PackageIdentifier" : "Python.Python.3.13"
+				},
+				{
+					"PackageIdentifier" : "Oracle.OracleLinux.8.7"
+				},
+				{
+					"PackageIdentifier" : "Oracle.OracleLinux.9.1"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu.2204"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu.2404"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.AppInstaller"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.WindowsTerminal"
+				},
+				{
+					"PackageIdentifier" : "Debian.Debian"
+				}
+			],
+			"SourceDetails" : 
+			{
+				"Argument" : "https://cdn.winget.microsoft.com/cache",
+				"Identifier" : "Microsoft.Winget.Source_8wekyb3d8bbwe",
+				"Name" : "winget",
+				"Type" : "Microsoft.PreIndexed.Package"
+			}
+		}
+	],
+	"WinGetVersion" : "1.8.1911"
+}

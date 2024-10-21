@@ -1,0 +1,308 @@
+{
+	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
+	"CreationDate" : "2024-10-21T13:37:00.335-00:00",
+	"Sources" : 
+	[
+		{
+			"Packages" : 
+			[
+				{
+					"PackageIdentifier" : "Bitwarden.Bitwarden"
+				},
+				{
+					"PackageIdentifier" : "JGraph.Draw"
+				},
+				{
+					"PackageIdentifier" : "7zip.7zip"
+				},
+				{
+					"PackageIdentifier" : "Ditto.Ditto"
+				},
+				{
+					"PackageIdentifier" : "GIMP.GIMP"
+				},
+				{
+					"PackageIdentifier" : "Git.Git"
+				},
+				{
+					"PackageIdentifier" : "Logitech.Options"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VSTOR"
+				},
+				{
+					"PackageIdentifier" : "Notepad++.Notepad++"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.Office"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OneDrive"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OpenJDK.17"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VCRedist.2010.x64"
+				},
+				{
+					"PackageIdentifier" : "ksnip.ksnip"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OpenJDK.11"
+				},
+				{
+					"PackageIdentifier" : "ChristianKindahl.InfraRecorder"
+				},
+				{
+					"PackageIdentifier" : "Hashicorp.Vagrant"
+				},
+				{
+					"PackageIdentifier" : "DisplayLink.GraphicsDriver"
+				},
+				{
+					"PackageIdentifier" : "Google.Chrome"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.CLRTypesSQLServer.2019"
+				},
+				{
+					"PackageIdentifier" : "nomacs.nomacs"
+				},
+				{
+					"PackageIdentifier" : "TrackerSoftware.PDF-XChangeEditor"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.WebDeploy"
+				},
+				{
+					"PackageIdentifier" : "Logitech.OptionsPlus"
+				},
+				{
+					"PackageIdentifier" : "TrackerSoftware.PDF-XChangePRO"
+				},
+				{
+					"PackageIdentifier" : "dotPDN.PaintDotNet"
+				},
+				{
+					"PackageIdentifier" : "RedHat.Podman"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.OpenJDK.21"
+				},
+				{
+					"PackageIdentifier" : "TortoiseGit.TortoiseGit"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.PowerShell"
+				},
+				{
+					"PackageIdentifier" : "Dell.CommandUpdate.Universal"
+				},
+				{
+					"PackageIdentifier" : "NoMoreFood.PuTTY-CAC"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VisualStudioCode"
+				},
+				{
+					"PackageIdentifier" : "GitHub.cli"
+				},
+				{
+					"PackageIdentifier" : "OpenJS.NodeJS"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.WSL"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VisualStudio.2022.Community"
+				},
+				{
+					"PackageIdentifier" : "GnuPG.GnuPG"
+				},
+				{
+					"PackageIdentifier" : "GnuPG.Gpg4win"
+				},
+				{
+					"PackageIdentifier" : "LIGHTNINGUK.ImgBurn"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.minikube"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.EdgeWebView2Runtime"
+				},
+				{
+					"PackageIdentifier" : "Yubico.YubikeyManager"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VCRedist.2013.x64"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DotNet.Runtime.7"
+				},
+				{
+					"PackageIdentifier" : "VMware.HorizonClient"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.Edge"
+				},
+				{
+					"PackageIdentifier" : "Python.Launcher"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.PowerToys"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DotNet.DesktopRuntime.7"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VCRedist.2015+.x86"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DotNet.DesktopRuntime.6"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DotNet.DesktopRuntime.8"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DotNet.AspNetCore.7"
+				},
+				{
+					"PackageIdentifier" : "Pushbullet.Pushbullet"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VCRedist.2015+.x64"
+				},
+				{
+					"PackageIdentifier" : "Poly.PlantronicsHub"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DotNet.Runtime.6"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VCRedist.2013.x86"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VCRedist.2010.x86"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DotNet.AspNetCore.6"
+				},
+				{
+					"PackageIdentifier" : "th-ch.YouTubeMusic"
+				},
+				{
+					"PackageIdentifier" : "PS.KubeDevDashboard"
+				},
+				{
+					"PackageIdentifier" : "RamenSoftware.7+TaskbarTweaker"
+				},
+				{
+					"PackageIdentifier" : "OpenWhisperSystems.Signal"
+				},
+				{
+					"PackageIdentifier" : "Bitwarden.CLI"
+				},
+				{
+					"PackageIdentifier" : "Derailed.k9s"
+				},
+				{
+					"PackageIdentifier" : "GNU.Wget2"
+				},
+				{
+					"PackageIdentifier" : "GitHub.GitHubDesktop"
+				},
+				{
+					"PackageIdentifier" : "Helm.Helm"
+				},
+				{
+					"PackageIdentifier" : "Insomnia.Inso"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.kubectl"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.kustomize"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VisualStudioCode.CLI"
+				},
+				{
+					"PackageIdentifier" : "Rclone.Rclone"
+				},
+				{
+					"PackageIdentifier" : "Zoom.Zoom.EXE"
+				},
+				{
+					"PackageIdentifier" : "RedHat.Podman-Desktop"
+				},
+				{
+					"PackageIdentifier" : "Insomnia.Insomnia"
+				},
+				{
+					"PackageIdentifier" : "k3d.k3d"
+				},
+				{
+					"PackageIdentifier" : "kosay.kubetui"
+				},
+				{
+					"PackageIdentifier" : "Python.Python.3.13"
+				},
+				{
+					"PackageIdentifier" : "Oracle.OracleLinux.8.7"
+				},
+				{
+					"PackageIdentifier" : "Oracle.OracleLinux.9.1"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu.2204"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu.2404"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.Teams"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.AppInstaller"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.UI.Xaml.2.7"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.UI.Xaml.2.8"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.VCLibs.Desktop.14"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DevHome"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.WindowsTerminal.Preview"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.WindowsTerminal"
+				},
+				{
+					"PackageIdentifier" : "TheBrowserCompany.Arc"
+				},
+				{
+					"PackageIdentifier" : "Debian.Debian"
+				}
+			],
+			"SourceDetails" : 
+			{
+				"Argument" : "https://cdn.winget.microsoft.com/cache",
+				"Identifier" : "Microsoft.Winget.Source_8wekyb3d8bbwe",
+				"Name" : "winget",
+				"Type" : "Microsoft.PreIndexed.Package"
+			}
+		}
+	],
+	"WinGetVersion" : "1.8.1911"
+}

@@ -1,0 +1,77 @@
+{
+	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
+	"CreationDate" : "2024-10-21T13:37:00.335-00:00",
+	"Sources" : 
+	[
+		{
+			"Packages" : 
+			[
+				{
+					"PackageIdentifier" : "Hashicorp.Vagrant"
+				},
+				{
+					"PackageIdentifier" : "RedHat.Podman-Desktop"
+				},
+				{
+					"PackageIdentifier" : "RedHat.Podman"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.WSL"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.minikube"
+				},
+				{
+					"PackageIdentifier" : "PS.KubeDevDashboard"
+				},
+				{
+					"PackageIdentifier" : "Derailed.k9s"
+				},
+				{
+					"PackageIdentifier" : "Helm.Helm"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.kubectl"
+				},
+				{
+					"PackageIdentifier" : "Kubernetes.kustomize"
+				},
+				{
+					"PackageIdentifier" : "Insomnia.Insomnia"
+				},
+				{
+					"PackageIdentifier" : "k3d.k3d"
+				},
+				{
+					"PackageIdentifier" : "kosay.kubetui"
+				},
+				{
+					"PackageIdentifier" : "Oracle.OracleLinux.8.7"
+				},
+				{
+					"PackageIdentifier" : "Oracle.OracleLinux.9.1"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu.2204"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu.2404"
+				},
+				{
+					"PackageIdentifier" : "Canonical.Ubuntu"
+				},
+				{
+					"PackageIdentifier" : "Debian.Debian"
+				}
+			],
+			"SourceDetails" : 
+			{
+				"Argument" : "https://cdn.winget.microsoft.com/cache",
+				"Identifier" : "Microsoft.Winget.Source_8wekyb3d8bbwe",
+				"Name" : "winget",
+				"Type" : "Microsoft.PreIndexed.Package"
+			}
+		}
+	],
+	"WinGetVersion" : "1.8.1911"
+}
