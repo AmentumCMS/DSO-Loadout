@@ -1,5 +1,5 @@
 name: DSO Loadout (Branch)
-run-name: ${{ github.actor }} is Collecting a Branch! 🚀
+run-name: ${{ github.actor }} is building a Branch! 🚀
 on:
   push:
     branches-ignore:

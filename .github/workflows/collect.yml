@@ -1,5 +1,5 @@
 name: DSO Loadout
-run-name: ${{ github.actor }} is Collecting 🚀
+run-name: ${{ github.actor }} is building main 🚀
 on:
   push:
     branches:
