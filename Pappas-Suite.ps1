@@ -1,13 +1,5 @@
 # Driver Suite
-winget install DisplayLink.GraphicsDriver
-winget install Poly.PlantronicsHub
-winget install Logitech.Options
-winget install Logitech.OptionsPlus
-# Optional
-winget install SomePythonThings.WingetUIStore
+winget install DisplayLink.GraphicsDriver Poly.PlantronicsHub Logitech.Options Logitech.OptionsPlus
 
 # Apps Suite
-winget install Microsoft.PowerToys
-winget install RamenSoftware.7+TaskbarTweaker
-winget install Bitwarden.Bitwarden 
-winget install Bitwarden.CLI
+winget install Microsoft.PowerToys RamenSoftware.7+TaskbarTweaker Bitwarden.Bitwarden Bitwarden.CLI Ditto.Ditto
