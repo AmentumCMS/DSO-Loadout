@@ -52,7 +52,7 @@ Basic set of apps:
 3. WGet - Command line downloader
 
 ```
-winget install GNU.Wget2 NoMoreFood.PuTTY-CAC VMware.HorizonClient
+winget install GNU.Wget2 NoMoreFood.PuTTY-CAC VMware.HorizonClient Microsoft.RemoteDesktopClient
 ```
 
 #### Desktop anywhere
