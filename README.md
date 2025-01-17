@@ -1,5 +1,5 @@
 # DSO Developer Lowside Loadout
-[![Release](https://github.com/amentumservices/DSO-Loadout/actions/workflows/collect.yml/badge.svg?branch=main)](https://github.com/amentumservices/DSO-Loadout/actions/workflows/collect.yml)
+[![Release](https://github.com/amentumcms/DSO-Loadout/actions/workflows/collect.yml/badge.svg?branch=main)](https://github.com/amentumcms/DSO-Loadout/actions/workflows/collect.yml)
 
 This repo contains a collection of methods to loadout the default PC with additional tools needed for effective development.
 
