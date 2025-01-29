@@ -1,0 +1,150 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+  config.vagrant.plugins = ["vagrant-vbguest","vagrant-disksize","vagrant-faster","vagrant-persistent-storage"]
+  config.vbguest.auto_update = false
+  config.ssh.key_type = :ecdsa521 # Requires Vagrant 2.4.1
+
+  # Every Vagrant development environment requires a box and a URL from which to fetch it.
+  config.vm.box = "boxen/ubuntu-24.04"
+  config.vm.hostname = "dd-noble-gui"
+  
+  ############################################################################
+  # Provider-specific configuration                                          #
+  ############################################################################
+  config.vm.provider "virtualbox" do |vb|
+    # Set Name
+    vb.name = "Developer Desktop - Noble DSO"
+
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = true
+    
+    # Customize CPU, Memory, and Disk
+    vb.cpus = 4
+    vb.memory = "8196"
+    config.disksize.size = '50GB'
+    
+    # Set up VM Base options
+    vb.customize ["modifyvm", :id, "--vm-process-priority", "normal"]
+    vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+    vb.customize ["modifyvm", :id, "--usbxhci", "on"]
+    vb.customize ["modifyvm", :id, "--clipboard-mode", "bidirectional"]
+    vb.customize ["modifyvm", :id, "--drag-and-drop", "bidirectional"]
+    vb.customize ["modifyvm", :id, "--vrde", "off"]
+    # Set up VM GUI options
+    vb.customize ["modifyvm", :id, "--vram", "160"]
+    vb.customize ["modifyvm", :id, "--monitorcount", "5"]
+    # vb.customize ["modifyvm", :id, "--accelerate2dvideo", "on"]
+    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    vb.customize ["modifyvm", :id, "--audio-enabled", "on"]
+    vb.customize ["modifyvm", :id, "--audio-in", "on"]
+    vb.customize ["modifyvm", :id, "--audio-out", "on"]
+    vb.customize ["modifyvm", :id, "--audiocontroller", "hda"]
+  end
+
+  # config.vm.synced_folder "C:/users/pappasj/Vagrant/Shared", "/vagrant", owner: "pappasj",
+  #   group: "pappasj", mount_options: ["uid=1004", "gid=1004"]
+
+  config.vagrant.sensitive = ["UBUNTUPRO", ENV["UBUNTUPRO"]]
+  ############################################################################
+  # Enable provisioning with a shell script.                                 #
+  ############################################################################
+  config.vm.provision "shell",
+    env: {
+      UBUNTUPRO:ENV['UBUNTUPRO']
+    },
+  inline: <<-'SHELL'
+    if [ -z "$UBUNTUPRO" ]; then
+      echo "UBUNTUPRO undefined, will not be attached"
+    else
+      echo "Pro token detected, attaching to Ubuntu Pro"
+      pro attach $UBUNTUPRO
+    fi
+
+    # Setup Rootless Podman
+    sysctl user.max_user_namespaces=15000
+    echo "user.max_user_namespaces=15000" > /etc/sysctl.d/10_user_namespace
+    usermod --add-subuids 200000-201000 --add-subgids 200000-201000 vagrant
+
+    ############################################################################
+    # Install Software                                                         #
+    ############################################################################
+    # Install software
+    echo -e "\nInstalling Software\n"
+    apt-get update -y &&\
+    apt-get install -y cloud-guest-utils ubuntu-advantage-tools flatpak \
+      apt-file tree tasksel wput wget mkisofs isomd5sum \
+      openjdk-17-jdk maven nodejs podman podman-docker skopeo &&\
+    corepack enable
+    echo -e "\nRunning Upgrade\n"
+    apt-get dist-upgrade -y
+
+    # Add flathub for flatpak
+    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+    # Install GUI &
+    echo -e "\nInstalling GUI\n"
+    apt-get install -y ubuntu-desktop^ numlockx gnome-software-plugin-flatpak &&\
+      systemctl set-default graphical
+
+    # Configure GUI
+    echo -e "\nDisable gnome-initial-setup for vagrant and all new users\n"
+    sed -i -e '/^#Wayland/a \\n# Disable gnome-initial-setup\nInitialSetupEnable=false' /etc/gdm3/custom.conf
+    mkdir /home/vagrant/.config
+    touch /home/vagrant/.config/gnome-initial-setup-done
+    chown vagrant:vagrant /home/vagrant/.config/gnome-initial-setup-done
+    mkdir -p /etc/skel/.config/
+    touch /etc/skel/.config/gnome-initial-setup-done
+    
+    echo -e "\nStarting GUI\n"
+    systemctl start gdm3 && \
+      numlockx on
+
+    echo -e "\nRunning Autoremove & apt-file update\n"
+    apt-get autoremove -y
+    apt-file update
+
+    if [ -z "$UBUNTUPRO" ]; then
+      echo -e "\nUBUNTUPRO undefined, will not be USG enabled\n"
+    else
+      echo -e "\nPro token detected!\n"
+      # echo "Installing & Enabling STIG"
+      # ua enable usg && apt -y install usg
+      echo "Enabling FIPS"
+      pro enable fips-updates --assume-yes
+      echo "PRO Status"
+      pro status
+    fi
+
+    echo -e "\nShell Provisioner Done\n\n"
+  SHELL
+
+  config.vm.provision 'shell', reboot: true
+
+  config.vm.provision "shell",
+    env: {
+      UBUNTUPRO:ENV['UBUNTUPRO']
+    },
+    inline: <<-'SHELL'
+
+    if [[ -z "$UBUNTUPRO" ]]; then
+      echo -e "\nUBUNTUPRO undefined, will not be hardened\n"
+    else
+      if [ $(command -v usg) ]; then
+        echo "Pro token detected, Running Harden and Audit"
+        echo "Enforcing STIG"
+        usg fix cis_level2_server
+      else
+        echo "USG is not enabled, hardening not available"
+      fi
+    fi
+    echo -e "\nShell Provisioner Done\n\n"
+  SHELL
+
+  config.vm.provision 'shell', reboot: true
+end

@@ -1,0 +1,168 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below.
+Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+  config.vagrant.plugins = ["vagrant-vbguest","vagrant-disksize","vagrant-persistent-storage"]
+  config.vbguest.auto_update = false
+  config.ssh.key_type = :ecdsa521 # Requires Vagrant 2.4.1
+
+  # Every Vagrant development environment requires a box and a URL from which to fetch it.
+  config.vm.box = "boxen/ubuntu-24.04"
+  config.vm.hostname = "dd-noble-gui"
+  
+  ############################################################################
+  # Provider-specific configuration                                          #
+  ############################################################################
+  config.vm.provider "virtualbox" do |vb|
+    # Set Name
+    vb.name = "Developer Desktop - Noble GUI"
+
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = true
+    
+    # Customize CPU, Memory, and Disk
+    vb.cpus = 4
+    vb.memory = "8196"
+    config.disksize.size = '50GB'
+    
+    # Set up VM Base options
+    vb.customize ["modifyvm", :id, "--vm-process-priority", "normal"]
+    vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+    vb.customize ["modifyvm", :id, "--usbxhci", "on"]
+    vb.customize ["modifyvm", :id, "--clipboard-mode", "bidirectional"]
+    vb.customize ["modifyvm", :id, "--drag-and-drop", "bidirectional"]
+    vb.customize ["modifyvm", :id, "--vrde", "off"]
+    # Set up VM GUI options
+    vb.customize ["modifyvm", :id, "--vram", "160"]
+    vb.customize ["modifyvm", :id, "--monitorcount", "5"]
+    # vb.customize ["modifyvm", :id, "--accelerate2dvideo", "on"]
+    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    vb.customize ["modifyvm", :id, "--audio-enabled", "on"]
+    vb.customize ["modifyvm", :id, "--audio-in", "on"]
+    vb.customize ["modifyvm", :id, "--audio-out", "on"]
+    vb.customize ["modifyvm", :id, "--audiocontroller", "hda"]
+  end
+
+  ############################################################################
+  # Add persistent Storage as /home/dso.  Needs to be seeded first.
+  
+  ############################################################################
+  # vagrant-persistent-storage plugin config
+  config.persistent_storage.enabled = true
+  config.persistent_storage.location = "DevboxPersistent.vdi"
+  config.persistent_storage.size = 51200 # in MB
+  config.persistent_storage.variant = 'Standard'
+  config.persistent_storage.mountname = 'dso'
+  config.persistent_storage.filesystem = 'ext4'
+  config.persistent_storage.mountpoint = "/home/dso"
+  config.persistent_storage.volgroupname = 'myvolgroup'
+  config.persistent_storage.use_lvm = false
+
+  # config.vm.synced_folder "C:/users/dso/Vagrant/Shared", "/vagrant", owner: "dso",
+  #   group: "dso", mount_options: ["uid=1004", "gid=1004"]
+
+  config.vagrant.sensitive = ["UBUNTUPRO", ENV["UBUNTUPRO"]]
+  ############################################################################
+  # Enable provisioning with a shell script.                                 #
+  ############################################################################
+  config.vm.provision "shell",  
+    env: {
+      UBUNTUPRO:ENV['UBUNTUPRO']
+    },
+  inline: <<-'SHELL'
+    if [ -z "$UBUNTUPRO"]; then
+      echo "UBUNTUPRO undefined, will not be attached"
+    else
+      echo "Pro token detected, attaching to Ubuntu Pro"
+      pro attach $UBUNTUPRO
+    fi
+
+    # Setup Vagrant user for SSH 
+    echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsObID3kyUjVcw/G2434I7sbFXK2XKWPv1fJgmUcj5AjrkGEjJdW4x6AHALEfhDWjwMOkDbS68lKzs2UT3CbznKU1ku+LnOPhE3Mf4Q3hpPA++kMG4HODlnqNPXGqH9EUg3e/XDGUzAKAjiL5WI5dhTjY8OMoU5aOLIXp06erBthU3uiFYcv5YzZxieC95M0kg8XAS/lG78Z29w1DCtyNU43otyZKFvSBhuqrlU6D3uNbXmHHIQP3/ldoqp6v3e0lC7sc6VVhULKVEZpb6PEl0ciZvYe2xb/n5KFKLGd+gpSyWKP/bPcuSPk2uuZQlo4QWBI5bym3V5/gkkQqTxoMo9MMxxqadgk1KD9v9O1rVU4bbRhdhqBatIjRIcyUSpNyWt9mFR9YIcCkKdU5F0RpE2bg1xesAnq9iTWMwrtzAVLjbvV2FuWRyF5D0+xiMSbU5V5nzj/OgnMFHBw19jq72pWVwG18XjgO/t3wKdyGVvIvFrSE59vsVvZsLZ6sQLtI1fk6l9l9iZ9z7vtuT4B06NZafiRZDPxNQ2H4+5v/W3ibs9dR8xNLffbd5maVBuJ9APZZgK+Z2pa4xDvbQ/TvnTJqIyA1PSy2KKvu4Ejtvhb9j5YdinIf6kz6Gtpv0+ZW/sR/d2UmxXJVt/RQh/3YtuXqGDcBzEc1WFzxjejJlJw== dso@cosia.local" >> /home/vagrant/.ssh/authorized_keys
+    echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAkbivC73ZJFaQl/8zYzZ6XYTaGmIR0tXDX+2vZS9U5Y3167wNLZe37YUAJA6hSo7CBSRbRxDU4aWiCJpDS3qEZqs7KWofOC2W/ANxQl+2PSzPzGX/pxrQ04K77XyLD3vREHiXZHOrzmiRA73L5Bix0WZe++dsjTMmH7eaPZshjOXcPsXluhEYOfuqqX+Zf9HOH8T2b42ZOl/ue9bVj+IBo719sD4gzIBf4iVB90//ftL6WCXjSu+M424YKWnqc1/bH8OPW38z+Tp+SWDkRGAotaYpYtn5yB1QAHx+1cnahU/X5pzs7z0rz1u6ngzUzlN0anlGqkarcMUg7T07f8GhXw== rsa-key-20200128" >> /home/vagrant/.ssh/authorized_keys
+    echo -e "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBADTMIuCyf1ONs8aVlaCZlr9v4JolTnuEfHA+7tsoyHyRo0f2cQMbLTslStzJDre2RoPaRjbT5l6xVVhCCn1z+LU9QCjNhYgxAduYoJzzQ2P3y7m2b/dP2tj8pe/CiCfJWXVsrg8P8SwXKbOBLJrSId9klhfkAPGDnmP9oGGOc+4+3CERw== ecdsa-key-20210211" >> /home/vagrant/.ssh/authorized_keys
+    # Setup Git for vagrant user
+    echo -e '[user]\n\tname = John Pappas\n\temail = j@jvpappas.net' > /home/vagrant/.gitconfig
+    # Setup Rootless Podman
+    sysctl user.max_user_namespaces=15000
+    echo "user.max_user_namespaces=15000" > /etc/sysctl.d/10_user_namespace
+    usermod --add-subuids 200000-201000 --add-subgids 200000-201000 vagrant
+
+    ############################################################################
+    # Add and configure my user                                                #
+    ############################################################################
+    echo "Configuring dso user."
+    useradd dso -p '$6$iermnqJu6iVLs1b1$3zwsY7MnYvrcm2YXMc9OPD7XGLiSUm9I/sScI.DMMxrbevGoO2wqD7hIwLCVQe4PR27KpKFpo0svwZmZqke7E0'
+    cp -v /etc/sudoers.d/vagrant /etc/sudoers.d/dso
+    sed -i 's/vagrant/dso/i' /etc/sudoers.d/dso
+    mkdir -p /home/dso/.config
+    touch /home/dso/.config/gnome-initial-setup-done
+    ln -s /vagrant /home/dso/vagrant
+    # Add SSH Keys
+    mkdir /home/dso/.ssh
+    echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsObID3kyUjVcw/G2434I7sbFXK2XKWPv1fJgmUcj5AjrkGEjJdW4x6AHALEfhDWjwMOkDbS68lKzs2UT3CbznKU1ku+LnOPhE3Mf4Q3hpPA++kMG4HODlnqNPXGqH9EUg3e/XDGUzAKAjiL5WI5dhTjY8OMoU5aOLIXp06erBthU3uiFYcv5YzZxieC95M0kg8XAS/lG78Z29w1DCtyNU43otyZKFvSBhuqrlU6D3uNbXmHHIQP3/ldoqp6v3e0lC7sc6VVhULKVEZpb6PEl0ciZvYe2xb/n5KFKLGd+gpSyWKP/bPcuSPk2uuZQlo4QWBI5bym3V5/gkkQqTxoMo9MMxxqadgk1KD9v9O1rVU4bbRhdhqBatIjRIcyUSpNyWt9mFR9YIcCkKdU5F0RpE2bg1xesAnq9iTWMwrtzAVLjbvV2FuWRyF5D0+xiMSbU5V5nzj/OgnMFHBw19jq72pWVwG18XjgO/t3wKdyGVvIvFrSE59vsVvZsLZ6sQLtI1fk6l9l9iZ9z7vtuT4B06NZafiRZDPxNQ2H4+5v/W3ibs9dR8xNLffbd5maVBuJ9APZZgK+Z2pa4xDvbQ/TvnTJqIyA1PSy2KKvu4Ejtvhb9j5YdinIf6kz6Gtpv0+ZW/sR/d2UmxXJVt/RQh/3YtuXqGDcBzEc1WFzxjejJlJw== dso@cosia.local" > /home/dso/.ssh/authorized_keys
+    echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAkbivC73ZJFaQl/8zYzZ6XYTaGmIR0tXDX+2vZS9U5Y3167wNLZe37YUAJA6hSo7CBSRbRxDU4aWiCJpDS3qEZqs7KWofOC2W/ANxQl+2PSzPzGX/pxrQ04K77XyLD3vREHiXZHOrzmiRA73L5Bix0WZe++dsjTMmH7eaPZshjOXcPsXluhEYOfuqqX+Zf9HOH8T2b42ZOl/ue9bVj+IBo719sD4gzIBf4iVB90//ftL6WCXjSu+M424YKWnqc1/bH8OPW38z+Tp+SWDkRGAotaYpYtn5yB1QAHx+1cnahU/X5pzs7z0rz1u6ngzUzlN0anlGqkarcMUg7T07f8GhXw== rsa-key-20200128" >> /home/dso/.ssh/authorized_keys
+    echo -e "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBADTMIuCyf1ONs8aVlaCZlr9v4JolTnuEfHA+7tsoyHyRo0f2cQMbLTslStzJDre2RoPaRjbT5l6xVVhCCn1z+LU9QCjNhYgxAduYoJzzQ2P3y7m2b/dP2tj8pe/CiCfJWXVsrg8P8SwXKbOBLJrSId9klhfkAPGDnmP9oGGOc+4+3CERw== ecdsa-key-20210211" >> /home/dso/.ssh/authorized_keys
+    # Setup Git
+    echo -e '[user]\n\tname = John Pappas\n\temail = j@jvpappas.net' > /home/dso/.gitconfig
+    # Rootless Podman
+    usermod --add-subuids 210000-211000 --add-subgids 210000-211000 dso
+    echo "Done."
+    
+    ############################################################################
+    # Install Software                                                         #
+    ############################################################################
+    # Install GUI & software
+    apt-get update
+    apt-get dist-upgrade -y
+    apt-get install -y ubuntu-desktop^ tree wput openjdk-11-jdk maven numlockx \
+      cloud-guest-utils apt-file gdisk unison tasksel podman skopeo \
+      ubuntu-advantage-tools && \
+      systemctl set-default graphical 
+
+    echo "Disable gnome-initial-setup for vagrant, dso, and all new users"
+    sed -i -e '/^#Wayland/a \\n# Disable gnome-initial-setup\nInitialSetupEnable=false' /etc/gdm3/custom.conf
+    mkdir /home/vagrant/.config
+    touch /home/vagrant/.config/gnome-initial-setup-done
+    mkdir /home/dso/.config
+    touch /home/dso/.config/gnome-initial-setup-done
+    chown vagrant:vagrant /home/vagrant/.config/gnome-initial-setup-done
+    mkdir -p /etc/skel/.config/
+    touch /etc/skel/.config/gnome-initial-setup-done
+    
+    # Enable Autologin
+    sed -i 's/^#  Automatic/Automatic/g' /etc/gdm3/custom.conf
+    sed -i 's/user1/dso/g' /etc/gdm3/custom.conf
+    systemctl start gdm3 && \
+      numlockx on
+
+    echo -e "\nRunning Autoremove & apt-file update\n"
+    apt-get autoremove -y
+    apt-file update
+
+    echo "Clean up permissions on dso home"
+    chown -vc dso:dso /home/dso
+    chown -R dso:dso /home/dso
+    chmod -R go-rwx /home/dso
+
+    if [-z "$UBUNTUPRO"]; then
+      echo "UBUNTUPRO undefined, will not be USG enabled"
+    else
+      echo "Pro token detected!"
+      # echo "Enabling STIG"
+      # ua enable usg
+      # echo "Installing STIG"
+      # apt -y install usg
+      echo "Enabling FIPS"
+      pro enable fips-updates --assume-yes
+      echo "PRO Status"
+      pro status
+    fi
+
+    echo "Shell Provisioner Done"
+  SHELL
+end

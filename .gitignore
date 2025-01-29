@@ -16,4 +16,5 @@ docs/
 *.zip
 *.bundle
 *.log
+*.vdi
 desktop.ini

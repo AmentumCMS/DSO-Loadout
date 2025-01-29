@@ -1,0 +1,8 @@
+#Ignore all files. Manually add -f only the needed files.
+**
+!*.sh
+!provision
+!Vagrantfile
+!*.code-workspace
+!.git*
+*.vdi
